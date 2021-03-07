@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 
 import './Blog.css';
 import Posts from '../Blog/Posts/Posts';
@@ -14,12 +14,19 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to={{
-                                pathname: 'new-post', 
+                            <li><NavLink 
+                            exact
+                             to="/"
+                             activeClassName="active" //just give the class name which we want to keep for active class  | below is the way to speciy inline styling as well
+                             activeStyle = {{       
+                                 color: '#fa923f',
+                                 textDecoration: 'Underline'
+                             }}>Home</NavLink></li>
+                            <li><NavLink to={{
+                                pathname: '/new-post', 
                                 hash: '#submit',
                                 search:'?quick-submit=true'
-                            }}>New Post</Link></li>
+                            }}>New Post</NavLink></li>
                         </ul>
                     </nav>
                 </header>
