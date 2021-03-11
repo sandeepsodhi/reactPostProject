@@ -11,8 +11,18 @@ class FullPost extends Component {
 
     componentDidMount(){
         console.log(this.props.match.params.id);
+        this.loadData();
+        
+    }
+
+    componentDidUpdate(){
+        this.loadData();
+    }
+    
+    loadData(){
         if(this.props.match.params.id){
-            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)){
+            //adding plus in front of !== condition parameter, because we want to convert that field to interger to stop infinit loop
+            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !==  +this.props.match.params.id)){
                 axios.get("/posts/" + this.props.match.params.id)
                 .then(response => {
                     this.setState({loadedPost : response.data});
@@ -21,7 +31,7 @@ class FullPost extends Component {
             }
         }
     }
-    
+
     deletePostHandler = () => {
         axios.delete('/posts/' + this.props.match.params.id)
             .then(response => {
