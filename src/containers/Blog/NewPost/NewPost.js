@@ -26,7 +26,8 @@ class NewPost extends Component {
         axios.post('/posts', data)
             .then(response => {
                 console.log(response);
-                this.setState({submitted:true});
+                this.props.history.push('/posts');  //if we want to below behavior to replace page we can use  .replace instead of push
+                // this.setState({submitted:true}); //with this you can not go back to prev page. but with above page is pushed into history 
             });
     }
 
